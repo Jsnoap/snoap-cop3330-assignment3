@@ -7,6 +7,8 @@ package ex43;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -18,8 +20,10 @@ public class AppTest
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue()
+    public void checkDirectoriesCreated() throws IOException
     {
-        assertTrue( true );
+        assertTrue(String.valueOf(true), App.createDirectories("coolWebsite", 'n', 'n', "Jordan"));
     }
+
+    // Other two methods simply print or create a file
 }
