@@ -5,21 +5,23 @@
 
 package ex42;
 
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import java.io.*;
 
-/**
- * Unit test for simple App.
- */
+import static org.junit.Assert.assertNull;
+
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+    // "createOutputFileWithHeader()" simply just creates output file
     @Test
-    public void shouldAnswerWithTrue()
+    public void checkParseThroughWholeFile() throws IOException
     {
-        assertTrue( true );
+        FileWriter outputCheck = new FileWriter("src/main/java/ex42/exercise42_output.txt");
+        outputCheck.write("Last      First     Salary\n--------------------------\n");
+
+        // Check that whole file was read through
+        assertNull(App.readAndParseFile(outputCheck));
     }
 }
