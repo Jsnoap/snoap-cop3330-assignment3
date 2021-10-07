@@ -51,39 +51,39 @@ public class App
     }
 
     // Method that creates the proper directories for the program and uses the names from the Scanner
-    public static boolean createDirectories(String siteName, char jsFolder, char cssFolder, String authorName) throws IOException
+    public static String createDirectories(String siteName, char jsFolder, char cssFolder, String authorName) throws IOException
     {
         jsFolder = Character.toUpperCase(jsFolder);
         cssFolder = Character.toUpperCase(cssFolder);
 
-        // "mkdirs()" or "mkdir()" is used to create these directories in the package
-        File file = new File("src/main/java/ex43/website/" + siteName);
-        boolean mainDirectoryCreated = file.mkdirs();
+        String mainPath = "src/main/java/ex43/website/" + siteName;
 
-        String path = "src/main/java/ex43/website/" + siteName;
+        // "mkdirs()" or "mkdir()" is used to create these directories in the package
+        File file = new File(mainPath);
+        file.mkdirs();
 
         // Pass over to function to create the index.html file
-        createIndexHTML(path, siteName, authorName);
+        createIndexHTML(mainPath, siteName, authorName);
 
         // Make the proper js and css directories if user prompted with affirmative
         if (jsFolder == 'Y')
         {
-            File file3 = new File("src/main/java/ex43/website/" + siteName + "/js");
+            File file3 = new File(mainPath + "/js");
             file3.mkdir();
         }
 
         if (cssFolder == 'Y')
         {
-            File file4 = new File("src/main/java/ex43/website/" + siteName + "/css");
+            File file4 = new File(mainPath + "/css");
             file4.mkdir();
         }
 
-        return mainDirectoryCreated;
+        return mainPath;
     }
 
     // Create the proper code to set up the beginning of an HTML file with the user input from Scanners
     // Googled "HTML Boilerplate" code to help with this step for realism
-    public static void createIndexHTML(String pathPlacement, String website, String creator) throws IOException
+    public static String createIndexHTML(String pathPlacement, String website, String creator) throws IOException
     {
         String path = pathPlacement + "/index.html";
         FileWriter writeIndex = new FileWriter(path);
@@ -94,6 +94,8 @@ public class App
         writeIndex.write("</head>\n\n<body>\n</body>\n\n</html>");
 
         writeIndex.close();
+
+        return path;
     }
 
     // Prints out what files were created

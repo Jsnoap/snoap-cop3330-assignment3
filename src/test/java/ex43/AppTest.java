@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Unit test for simple App.
@@ -22,8 +22,14 @@ public class AppTest
     @Test
     public void checkDirectoriesCreated() throws IOException
     {
-        assertTrue(String.valueOf(true), App.createDirectories("coolWebsite", 'n', 'n', "Jordan"));
+        assertEquals("src/main/java/ex43/website/coolWebsite", App.createDirectories("coolWebsite", 'n', 'n', "Jordan"));
     }
 
-    // Other two methods simply print or create a file
+    @Test
+    public void checkDirectoryIndexHTML() throws IOException
+    {
+        assertEquals("src/main/java/ex43/website/coolWebsite/index.html", App.createIndexHTML("src/main/java/ex43/website/coolWebsite", "coolWebsite", "jordan"));
+    }
+
+    // Other method simply prints
 }
