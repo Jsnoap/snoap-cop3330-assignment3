@@ -10,18 +10,21 @@ import org.junit.Test;
 
 import java.io.*;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
 
 public class AppTest 
 {
-    // "createOutputFileWithHeader()" simply just creates output file
     @Test
-    public void checkParseThroughWholeFile() throws IOException
+    public void checkTableAdded() throws IOException
     {
-        FileWriter outputCheck = new FileWriter("src/main/java/ex42/exercise42_output.txt");
-        outputCheck.write("Last      First     Salary\n--------------------------\n");
-
-        // Check that whole file was read through
-        assertNull(App.readAndParseFile(outputCheck));
+        assertEquals("Last      First     Salary\n" +
+                "--------------------------\n" +
+                "Ling      Mai       55900 \n" +
+                "Johnson   Jim       56500 \n" +
+                "Jones     Aaron     46000 \n" +
+                "Jones     Chris     34500 \n" +
+                "Swift     Geoffrey  14200 \n" +
+                "Xiong     Fong      65000 \n" +
+                "Zarnecki  Sabrina   51500 \n", App.readAndParseFile());
     }
 }

@@ -3,8 +3,8 @@
 
 class App
 {
-+createOutputFileWithHeader()
 +readAndParseFile()
++printTable()
 }
 
 @enduml

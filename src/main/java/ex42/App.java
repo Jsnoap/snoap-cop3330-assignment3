@@ -9,54 +9,52 @@
 
 /* PSUEDOCODE General Idea:
 Read input file from the same package
-Create an initial statement in the output file with a header for the categories (Last      First     Salary)
-Create a loop to read the file into an array and add these values to a new output file at the same time
-End with output file with all the correct sorting
+Create an initial statement in the output with a header for the categories (Last      First     Salary)
+Create a loop to read the file into an array and add these values to the output statement
+End with printing output statement
  */
 package ex42;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class App
 {
-    // main method runs through correct order of calls while holding out output File
+    // main method runs through correct order of calls while holding "table" value
     public static void main( String[] args ) throws IOException
     {
-        FileWriter outputFile;
+        String table;
 
-        outputFile = createOutputFileWithHeader();
+        table = readAndParseFile();
 
-        readAndParseFile(outputFile);
+        printTable(table);
     }
 
-    // Function to create the output file and add the proper header
-    public static FileWriter createOutputFileWithHeader() throws IOException
-    {
-        FileWriter output = new FileWriter("src/main/java/ex42/exercise42_output.txt");
-        output.write("Last      First     Salary\n--------------------------\n");
-
-        return output;
-    }
-
-    // Function to add to the output file by reading and parsing the input file (with BufferedReader + split)
-    public static String readAndParseFile(FileWriter output) throws IOException
+    // Function to add to the output statement by reading and parsing the input file (with BufferedReader + split)
+    public static String readAndParseFile() throws IOException
     {
         BufferedReader br = new BufferedReader(new FileReader("src/main/java/ex42/exercise42_input.txt"));
         String line;
+        StringBuilder outputTable = new StringBuilder();
+
+        // Prints table header
+        outputTable.append("Last      First     Salary\n--------------------------\n");
 
         // While loop parses through file and creates an array of each of the value sets for each loop. Adds these to output file
         while((line = br.readLine()) != null)
         {
             // Split is key to the CSV parser by identifying where each comma is located
             String[] info = line.split(",");
-            output.write(String.format("%-10s", info[0]) + String.format("%-10s", info[1]) + String.format("%-6s", info[2]) + "\n");
+            outputTable.append(String.format("%-10s", info[0])).append(String.format("%-10s", info[1])).append(String.format("%-6s", info[2])).append("\n");
         }
 
-        output.close();
+        return outputTable.toString();
+    }
 
-        return br.readLine();
+    // Short function to print table content
+    public static void printTable(String tableContent)
+    {
+        System.out.println(tableContent);
     }
 }
