@@ -3,8 +3,9 @@
 
 class App
 {
++main( String[] args )
 +readAndParseFile()
-+printTable()
++printTable(String tableContent)
 }
 
 @enduml

@@ -5,21 +5,44 @@
 
 package ex44;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import java.io.FileReader;
+import java.io.IOException;
 
-/**
- * Unit test for simple App.
- */
+import static org.junit.Assert.assertEquals;
+
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+    // parseJsonFile() simply creates file and get it in a JSONArray form
+    // printInvalid() and askForProduct() only scan and print
     @Test
-    public void shouldAnswerWithTrue()
+    public void checkPrintingProductAskedFor() throws IOException, ParseException
     {
-        assertTrue( true );
+        JSONParser jsonParser = new JSONParser();
+        FileReader reader = new FileReader("src/main/java/ex44/exercise44_input.json");
+        Object obj = jsonParser.parse(reader);
+        JSONObject validProducts = (JSONObject)obj;
+        JSONArray array = (JSONArray)validProducts.get("products");
+
+        assertEquals("Widget", App.printProduct("Widget", array));
+        assertEquals("Thing", App.printProduct("Thing", array));
+        assertEquals("Doodad", App.printProduct("Doodad", array));
+    }
+
+    @Test
+    public void checkBadPrintingProductAskedFor() throws IOException, ParseException
+    {
+        JSONParser jsonParser = new JSONParser();
+        FileReader reader = new FileReader("src/main/java/ex44/exercise44_input.json");
+        Object obj = jsonParser.parse(reader);
+        JSONObject validProducts = (JSONObject)obj;
+        JSONArray array = (JSONArray)validProducts.get("products");
+
+        assertEquals("", App.printProduct("Helloooooo", array));
     }
 }

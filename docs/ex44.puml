@@ -2,9 +2,11 @@
 'https://plantuml.com/class-diagram
 
 class App {
--number: int
--name: string
-+size()
++main( String[] args )
++printInvalid()
++parseJsonFile()
++printProduct(String productInJSON, JSONArray arrayOfProducts)
++askForProduct()
 }
 
 @enduml
