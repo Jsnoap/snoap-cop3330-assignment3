@@ -7,19 +7,22 @@ package ex45;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+    // promptAnCreateOutputFile() scans for a name for a file and creates empty file.
     @Test
-    public void shouldAnswerWithTrue()
+    public void testFileIsReturned() throws IOException
     {
-        assertTrue( true );
+        File test = new File("src/test/java/ex45/test.txt");
+        // Test that file is returned
+        assertNotNull(App.changeUtilizeToUse(test));
     }
 }
