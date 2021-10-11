@@ -2,9 +2,11 @@
 'https://plantuml.com/class-diagram
 
 class App {
--number: int
--name: string
-+size()
++main( String[] args )
++countWordOccurences()
++createHashMap(ArrayList<String> wordsInFile, ArrayList<Integer> occurences)
++sortAndPrintHashMap(HashMap<String, Integer> mapOfFileWords)
++printStars(int numStars)
 }
 
 @enduml
